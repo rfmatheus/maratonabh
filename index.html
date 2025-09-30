@@ -1,137 +1,313 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Maratona BH</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Maratona BH — Contato, Informações e Parcerias</title>
+
+  <!-- SEO básico -->
+  <meta name="description" content="Informações para corredores e contato para parcerias. Domínios maratonabh.com.br e maratonadebh.com.br — interessados em parceria/uso oficial, entre em contato." />
+  <meta name="theme-color" content="#0a0a0a" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Maratona BH — Contato, Informações e Parcerias" />
+  <meta property="og:description" content="Domínios maratonabh.com.br e maratonadebh.com.br. Informações úteis para corredores, e canal para parcerias e negociação do domínio." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://maratonabh.com.br" />
+
+  <!-- Tipografia (leve) -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: url('https://images.unsplash.com/photo-1520975933028-df2a4cbb0d1b?auto=format&fit=crop&w=1600&q=80') no-repeat center center fixed;
-      background-size: cover;
-      color: #fff;
+    :root{
+      --bg: #0b0e12;
+      --card: rgba(255,255,255,.06);
+      --text: #eaf2ff;
+      --muted: #b9c4d6;
+      --brand: #00d084;         /* verde energia */
+      --brand-2: #57a6ff;       /* azul esportivo */
+      --accent: #ff7a59;        /* laranja CTA */
+      --ring: rgba(255,255,255,.12);
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --glass: blur(10px) saturate(120%);
+      --radius: 16px;
     }
-    header {
-      background: rgba(0, 0, 0, 0.7);
-      padding: 1rem;
-      text-align: center;
-    }
-    header h1 { margin: 0; font-size: 2rem; color: #ffcc00; }
-    header p { margin: .2rem 0; font-size: 1.1rem; }
-
-    main {
-      background: rgba(0, 0, 0, 0.65);
-      margin: 2rem auto;
-      padding: 2rem;
-      border-radius: 10px;
-      max-width: 900px;
-    }
-    section { margin-bottom: 2rem; }
-    h2 { color: #ffcc00; border-bottom: 2px solid #ffcc00; padding-bottom: .5rem; }
-    a { color: #66ccff; }
-
-    button, select, input[type="text"] {
-      padding: .6rem 1rem;
-      margin: .4rem 0;
-      border-radius: 6px;
-      border: none;
-      font-size: 1rem;
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif;
+      color:var(--text);
+      background: radial-gradient(1200px 600px at 10% 10%, #14222f 0%, #0b0e12 60%) fixed;
+      overflow-x:hidden;
     }
 
-    /* Caixa corrida */
-    #results {
-      margin-top: 1rem;
-      padding: 1rem;
-      background: rgba(255,255,255,0.1);
-      border-radius: 6px;
+    /* HERO com imagem sutil */
+    .hero{
+      position:relative;
+      min-height:62vh;
+      display:grid;
+      place-items:center;
+      padding:96px 20px 48px;
+      background:
+        radial-gradient(1200px 600px at 80% -10%, rgba(0,208,132,.20) 0%, rgba(0,0,0,0) 60%),
+        url("https://images.unsplash.com/photo-1520975933028-df2a4cbb0d1b?auto=format&fit=crop&w=1800&q=80") center/cover no-repeat;
+      isolation:isolate;
     }
+    .hero::after{
+      content:"";
+      position:absolute; inset:0;
+      background: linear-gradient(180deg, rgba(11,14,18,.55) 0%, rgba(11,14,18,.85) 100%);
+      z-index:-1;
+    }
+    .wrap{max-width:1080px; margin:0 auto; padding:0 20px}
 
-    /* Caixa IA */
-    .chat-box { display: flex; gap: .5rem; }
-    .chat-box input { flex: 1; padding: .6rem; }
-    #aiResponse {
-      margin-top: 1rem;
-      padding: 1rem;
-      border-radius: 6px;
-      background: rgba(255, 255, 255, 0.1);
-      font-style: italic;
+    header.site{
+      position:fixed; inset:0 auto auto 0;
+      height:64px; width:100%;
+      backdrop-filter: var(--glass);
+      -webkit-backdrop-filter: var(--glass);
+      background: linear-gradient(180deg, rgba(15,18,24,.75), rgba(15,18,24,.55));
+      border-bottom:1px solid var(--ring);
+      display:flex; align-items:center; z-index:30;
     }
+    header .wrap{display:flex; align-items:center; justify-content:space-between}
+    .brand{display:flex; align-items:center; gap:10px; font-weight:800; letter-spacing:.3px}
+    .brand .dot{width:10px; height:10px; border-radius:50%; background:var(--brand)}
 
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background: rgba(0, 0, 0, 0.8);
-      font-size: .9rem;
-      margin-top: 2rem;
+    nav a{
+      color:var(--muted); text-decoration:none; font-weight:600; margin-left:18px;
+      padding:8px 12px; border-radius:10px; transition:.2s ease;
     }
+    nav a:hover{color:#fff; background:rgba(255,255,255,.06)}
+
+    .hero h1{font-size: clamp(28px, 5vw, 48px); margin:0 0 12px}
+    .hero p.lead{color:var(--muted); margin:0 0 24px; font-size: clamp(16px, 2.2vw, 20px)}
+    .cta{
+      display:flex; flex-wrap:wrap; gap:12px;
+    }
+    .btn{
+      display:inline-flex; align-items:center; gap:10px;
+      background:var(--accent); color:#0b0e12; padding:14px 18px;
+      border:none; border-radius:12px; font-weight:800; cursor:pointer; box-shadow: var(--shadow);
+      text-decoration:none;
+    }
+    .btn.secondary{
+      background:transparent; color:#fff; border:1px solid var(--ring)
+    }
+    .grid{
+      display:grid; gap:22px; grid-template-columns: repeat(12, 1fr);
+    }
+    .card{
+      background:var(--card);
+      border:1px solid var(--ring);
+      border-radius:var(--radius);
+      box-shadow: var(--shadow);
+      padding:22px;
+      backdrop-filter: var(--glass);
+      -webkit-backdrop-filter: var(--glass);
+    }
+    .card h3{margin:0 0 10px}
+    .pill{display:inline-block; padding:6px 10px; border-radius:999px; font-size:12px; letter-spacing:.2px; background:rgba(255,255,255,.08); color:var(--muted); border:1px solid var(--ring)}
+    .list{margin:12px 0; padding:0 0 0 18px; color:var(--text)}
+    .list li{margin:8px 0}
+    .muted{color:var(--muted)}
+    .cols-3>*{grid-column: span 12}
+    @media(min-width:800px){ .cols-3>*{grid-column: span 4} }
+    .cols-2>*{grid-column: span 12}
+    @media(min-width:800px){ .cols-2>*{grid-column: span 6} }
+
+    /* formulário/inputs */
+    .field{display:flex; gap:10px; flex-wrap:wrap}
+    .input, select{
+      background:rgba(255,255,255,.08);
+      border:1px solid var(--ring);
+      color:#fff; padding:12px 14px; border-radius:12px; min-width: 240px;
+      outline:none;
+    }
+    .input::placeholder{color:#9fb0c7}
+    .btn.small{padding:10px 12px; border-radius:10px}
+    .grid .full{grid-column:1/-1}
+
+    footer{
+      margin-top:48px; border-top:1px solid var(--ring);
+      background: rgba(0,0,0,.55); padding:22px 0; color:var(--muted)
+    }
+    .legal{display:flex; gap:16px; flex-wrap:wrap; justify-content:space-between; align-items:center}
+    .links a{color:var(--muted); text-decoration:none; margin-right:12px}
+    .links a:hover{color:#fff}
   </style>
+
+  <!-- JSON-LD para SEO + busca do site -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Organization",
+    "name":"Maratona BH",
+    "url":"https://maratonabh.com.br",
+    "email":"mailto:matheus.renatofabiano@gmail.com",
+    "sameAs":[
+      "https://worldathletics.org/competitions",
+      "https://runsignup.com/",
+      "https://ticketsports.com.br/"
+    ]
+  }
+  </script>
 </head>
 <body>
-  <header>
-    <h1>Maratona BH</h1>
-    <p>Seu portal de corridas, alertas e informações</p>
+
+  <header class="site">
+    <div class="wrap">
+      <div class="brand"><span class="dot"></span> Maratona BH</div>
+      <nav aria-label="principal">
+        <a href="#contato">Contato</a>
+        <a href="#parcerias">Parcerias</a>
+        <a href="#corredores">Para Corredores</a>
+        <a href="#busca">Busca</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+    </div>
   </header>
 
-  <main>
-    <!-- Contato -->
-    <section id="contato">
-      <h2>Contato</h2>
-      <p>
-        📧 <a href="mailto:matheus.renatofabiano@gmail.com">matheus.renatofabiano@gmail.com</a><br/>
-        📱 <a href="https://wa.me/5531996579488" target="_blank">+55 (31) 99657-9488</a>
+  <section class="hero" role="banner" aria-label="apresentação">
+    <div class="wrap">
+      <h1>Domínio <span style="color:var(--brand)">maratonabh.com.br</span> — contato e informações oficiais</h1>
+      <p class="lead">
+        Este site não é o canal oficial de nenhum evento.  
+        Se você é organizador(a) ou parceiro(a) e quer usar o domínio, fale comigo.
       </p>
-    </section>
-
-    <!-- Busca de Corridas -->
-    <section id="corridas">
-      <h2>Buscar Corridas</h2>
-      <p>Pesquise por corridas no mundo:</p>
-      <select id="region">
-        <option value="US">Estados Unidos</option>
-        <option value="BR">Brasil</option>
-        <option value="CA">Canadá</option>
-        <option value="GB">Reino Unido</option>
-        <option value="DE">Alemanha</option>
-      </select>
-      <button onclick="buscarCorridas()">Buscar</button>
-      <div id="results"></div>
-    </section>
-
-    <!-- Caixa de IA -->
-    <section id="ia">
-      <h2>Pergunte ao Agente de IA</h2>
-      <p>Faça perguntas sobre corridas e treinos:</p>
-      <div class="chat-box">
-        <input type="text" id="userQuestion" placeholder="Digite sua pergunta..." />
-        <button onclick="sendQuestion()">Enviar</button>
+      <div class="cta">
+        <a class="btn" href="mailto:matheus.renatofabiano@gmail.com?subject=Parceria%20-%20maratonabh.com.br&body=Olá,%20tenho%20interesse%20no%20domínio%20maratonabh.com.br.">
+          ✉️ Falar por e-mail
+        </a>
+        <a class="btn secondary" href="https://wa.me/5531996579488" target="_blank" rel="noopener">
+          💬 WhatsApp: +55 (31) 99657-9488
+        </a>
       </div>
-      <div id="aiResponse"></div>
+    </div>
+  </section>
+
+  <main class="wrap" id="conteudo">
+    <!-- CARTÕES PRINCIPAIS -->
+    <div class="grid cols-3">
+      <article class="card">
+        <span class="pill">Contato</span>
+        <h3>Fale diretamente comigo</h3>
+        <p class="muted">Parcerias, licenciamento do domínio, mídia e dúvidas.</p>
+        <ul class="list">
+          <li>📧 <a href="mailto:matheus.renatofabiano@gmail.com">matheus.renatofabiano@gmail.com</a></li>
+          <li>📱 <a href="https://wa.me/5531996579488" target="_blank" rel="noopener">+55 (31) 99657-9488</a></li>
+        </ul>
+        <div class="field">
+          <a class="btn small" href="mailto:matheus.renatofabiano@gmail.com?subject=Interesse%20no%20dom%C3%ADnio&body=Olá,%20tenho%20interesse%20em%20conversar%20sobre%20o%20dom%C3%ADnio.">Agendar conversa</a>
+          <a class="btn small secondary" href="#faq">Ver FAQ</a>
+        </div>
+      </article>
+
+      <article class="card" id="parcerias">
+        <span class="pill">Para parceiros</span>
+        <h3>Uso do domínio & visibilidade</h3>
+        <p class="muted">Os domínios <strong>maratonabh.com.br</strong> e <strong>maratonadebh.com.br</strong> estão disponíveis para parceria/licenciamento.</p>
+        <ul class="list">
+          <li>Direcionamento para site oficial do evento</li>
+          <li>Landing de inscrições / divulgação</li>
+          <li>Planos de mídia e SEO local</li>
+        </ul>
+        <a class="btn small" href="mailto:matheus.renatofabiano@gmail.com?subject=Proposta%20de%20parceria%20-%20maratonabh.com.br">Enviar proposta</a>
+      </article>
+
+      <article class="card" id="corredores">
+        <span class="pill">Para corredores</span>
+        <h3>Guias rápidos e links úteis</h3>
+        <ul class="list">
+          <li>🏛️ <a href="https://worldathletics.org/competitions" target="_blank" rel="noopener">World Athletics — calendário</a></li>
+          <li>🎟️ <a href="https://www.ticketsports.com.br" target="_blank" rel="noopener">Ticket Sports — inscrições</a></li>
+          <li>🏁 <a href="https://runsignup.com/" target="_blank" rel="noopener">RunSignUp — corridas (EUA/Canadá)</a></li>
+          <li>📋 <a href="https://www.sympla.com.br/eventos/esportes" target="_blank" rel="noopener">Sympla — eventos esportivos</a></li>
+          <li>🏟️ <a href="https://cbat.org.br" target="_blank" rel="noopener">CBAt — Confederação Brasileira de Atletismo</a></li>
+        </ul>
+      </article>
+    </div>
+
+    <!-- BUSCA (Metabusca sem backend) -->
+    <section class="card full" id="busca" aria-label="busca de corridas">
+      <span class="pill">Busca</span>
+      <h3>Procure corridas por cidade/país</h3>
+      <p class="muted">Digite uma cidade/país (ex.: “Belo Horizonte”, “Brasil”, “Lisboa”, “Boston”) e abra resultados em portais relevantes.</p>
+
+      <div class="field" style="margin-top:10px">
+        <input id="q" class="input" type="text" placeholder="Ex.: Belo Horizonte / Brasil / Boston / Lisboa" />
+        <select id="scope" class="input" aria-label="escopo">
+          <option value="geral">Geral (Google)</option>
+          <option value="worldathletics">World Athletics</option>
+          <option value="runsignup">RunSignUp</option>
+          <option value="youtube">YouTube (guias, vlogs, reviews)</option>
+        </select>
+        <button class="btn" onclick="openSearch()">🔎 Buscar</button>
+        <button class="btn secondary" onclick="openAll()">Abrir em todos</button>
+      </div>
+      <p id="hint" class="muted" style="margin-top:8px"></p>
+    </section>
+
+    <!-- FAQ / TRANSPARÊNCIA -->
+    <section class="grid cols-2" id="faq" aria-label="perguntas frequentes">
+      <article class="card">
+        <h3>Este é o site oficial da Maratona de BH?</h3>
+        <p class="muted">Não. Este site é informativo e os domínios são de minha propriedade. Caso você esteja organizando um evento e deseje utilizar o domínio oficialmente, entre em contato.</p>
+      </article>
+      <article class="card">
+        <h3>Como funciona a parceria/licenciamento do domínio?</h3>
+        <p class="muted">Podemos realizar redirecionamento, landing de inscrições e mídia, com prazos e condições combinadas. Fale comigo para alinharmos objetivos e cronograma.</p>
+      </article>
     </section>
   </main>
 
   <footer>
-    &copy; 2025 Maratona BH — Todos os direitos reservados
+    <div class="wrap legal">
+      <div>© <span id="year"></span> — Domínios administrados por Renato Fabiano Matheus</div>
+      <div class="links">
+        <a href="#contato">Contato</a>
+        <a href="#parcerias">Parcerias</a>
+        <a href="#corredores">Para Corredores</a>
+      </div>
+    </div>
   </footer>
 
   <script>
-    async function buscarCorridas() {
-      const region = document.getElementById("region").value;
-      const res = await fetch(`/races?country=${region}`);
-      const data = await res.json();
-      document.getElementById("results").innerHTML =
-        data.races.map(r => `🏃 ${r.name} - ${r.date} (${r.location})`).join("<br>");
-    }
+    // Ano no rodapé
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-    async function sendQuestion() {
-      const question = document.getElementById("userQuestion").value;
-      const res = await fetch("/ask", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ question })
-      });
-      const data = await res.json();
-      document.getElementById("aiResponse").innerText = "🤖 " + data.answer;
+    // Dicas de busca
+    const input = document.getElementById('q');
+    const hint = document.getElementById('hint');
+    input.addEventListener('input', () => {
+      hint.textContent = input.value.trim()
+        ? `Dica: experimente “${input.value} meia maratona”, “${input.value} 10k”, “${input.value} inscrição corrida”.`
+        : '';
+    });
+
+    // Constrói URLs de metabusca (sem backend)
+    function buildUrls(q){
+      const query = encodeURIComponent(q.trim());
+      return {
+        geral: `https://www.google.com/search?q=${query}+corrida+maratona+inscri%C3%A7%C3%A3o`,
+        worldathletics: `https://worldathletics.org/competitions?term=${query}`,
+        runsignup: `https://runsignup.com/Search?search[type]=races&search[query]=${query}`,
+        youtube: `https://www.youtube.com/results?search_query=${query}+maratona+corrida+review`
+      };
+    }
+    function openSearch(){
+      const q = document.getElementById('q').value;
+      const scope = document.getElementById('scope').value;
+      if(!q.trim()){ alert('Digite uma cidade ou país.'); return; }
+      const urls = buildUrls(q);
+      window.open(urls[scope] || urls.geral, '_blank', 'noopener');
+    }
+    function openAll(){
+      const q = document.getElementById('q').value;
+      if(!q.trim()){ alert('Digite uma cidade ou país.'); return; }
+      const urls = buildUrls(q);
+      for(const key of Object.keys(urls)){ window.open(urls[key], '_blank', 'noopener'); }
     }
   </script>
 </body>
