@@ -25,6 +25,8 @@
     }
     section { margin-bottom: 2rem; }
     h2 { border-bottom: 2px solid #eee; padding-bottom: .5rem; }
+    a { color: #0066cc; text-decoration: none; }
+    a:hover { text-decoration: underline; }
     button, select, input[type="text"] {
       padding: .5rem 1rem;
       margin: .5rem 0;
@@ -34,13 +36,29 @@
       cursor: pointer;
     }
     .login-buttons button {
+      display: inline-flex;
+      align-items: center;
+      gap: .5rem;
+      color: #fff;
       margin-right: .5rem;
+      border: none;
     }
+    .btn-google { background: #db4437; }
+    .btn-apple { background: #000000; }
+    .btn-microsoft { background: #2b579a; }
     .chat-box {
       display: flex;
       gap: .5rem;
     }
     .chat-box input { flex: 1; }
+    footer {
+      text-align: center;
+      margin-top: 2rem;
+      padding: 1rem;
+      font-size: 0.9rem;
+      background: #222;
+      color: #fff;
+    }
   </style>
 </head>
 <body>
@@ -50,14 +68,46 @@
   </header>
 
   <main>
+    <!-- Contatos -->
+    <section>
+      <h2>Contato</h2>
+      <p>
+        📧 <a href="mailto:matheus.renatofabiano@gmail.com" target="_blank">
+          matheus.renatofabiano@gmail.com
+        </a><br/>
+        📱 <a href="https://wa.me/5531996579488" target="_blank">
+          +55 (31) 99657-9488 (WhatsApp)
+        </a>
+      </p>
+    </section>
+
+    <!-- Links externos -->
+    <section>
+      <h2>Links úteis</h2>
+      <ul>
+        <li><a href="https://worldathletics.org/competitions" target="_blank">World Athletics</a></li>
+        <li><a href="https://www.marathonworld.com/" target="_blank">Marathon World</a></li>
+        <li><a href="https://www.runnersworld.com/" target="_blank">Runner's World</a></li>
+      </ul>
+    </section>
+
     <!-- Login -->
     <section>
       <h2>Conectar</h2>
       <p>Entre com sua conta para receber alertas e acessar funcionalidades extras:</p>
       <div class="login-buttons">
-        <button onclick="alert('Login com Google em breve')">Entrar com Google</button>
-        <button onclick="alert('Login com Apple em breve')">Entrar com Apple</button>
-        <button onclick="alert('Login com Microsoft em breve')">Entrar com Microsoft</button>
+        <button class="btn-google" onclick="alert('Login com Google em breve')">
+          <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google" width="20" />
+          Entrar com Google
+        </button>
+        <button class="btn-apple" onclick="alert('Login com Apple em breve')">
+          <img src="https://www.svgrepo.com/show/303128/apple-logo.svg" alt="Apple" width="20" />
+          Entrar com Apple
+        </button>
+        <button class="btn-microsoft" onclick="alert('Login com Microsoft em breve')">
+          <img src="https://www.svgrepo.com/show/303144/microsoft.svg" alt="Microsoft" width="20" />
+          Entrar com Microsoft
+        </button>
       </div>
     </section>
 
@@ -88,6 +138,10 @@
       <div id="aiResponse" style="margin-top:1rem; font-style: italic;"></div>
     </section>
   </main>
+
+  <footer>
+    &copy; 2025 Maratona BH — Todos os direitos reservados
+  </footer>
 
   <script>
     function sendQuestion() {
