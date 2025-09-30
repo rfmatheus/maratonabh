@@ -20,44 +20,6 @@
     header h1 { margin: 0; font-size: 2rem; color: #ffcc00; }
     header p { margin: .2rem 0; font-size: 1.1rem; }
 
-    /* Menu lateral */
-    .sidenav {
-      height: 100%;
-      width: 0;
-      position: fixed;
-      z-index: 1;
-      top: 0; left: 0;
-      background-color: rgba(0, 0, 0, 0.95);
-      overflow-x: hidden;
-      transition: 0.3s;
-      padding-top: 60px;
-    }
-    .sidenav a {
-      padding: 10px 20px;
-      text-decoration: none;
-      font-size: 18px;
-      color: #ffcc00;
-      display: block;
-      transition: 0.2s;
-    }
-    .sidenav a:hover { color: #fff; background: #ff6600; }
-    .sidenav .closebtn {
-      position: absolute;
-      top: 20px; right: 25px;
-      font-size: 36px;
-      color: #fff;
-    }
-
-    .menu-btn {
-      font-size: 24px;
-      cursor: pointer;
-      color: #ffcc00;
-      background: none;
-      border: none;
-      position: absolute;
-      top: 15px; left: 15px;
-    }
-
     main {
       background: rgba(0, 0, 0, 0.65);
       margin: 2rem auto;
@@ -77,11 +39,6 @@
       font-size: 1rem;
     }
 
-    /* Login */
-    .btn-google { background: #db4437; color: #fff; }
-    .btn-apple { background: #000; color: #fff; }
-    .btn-microsoft { background: #2b579a; color: #fff; }
-
     /* Caixa corrida */
     #results {
       margin-top: 1rem;
@@ -91,14 +48,8 @@
     }
 
     /* Caixa IA */
-    .chat-box {
-      display: flex;
-      gap: .5rem;
-    }
-    .chat-box input {
-      flex: 1;
-      padding: .6rem;
-    }
+    .chat-box { display: flex; gap: .5rem; }
+    .chat-box input { flex: 1; padding: .6rem; }
     #aiResponse {
       margin-top: 1rem;
       padding: 1rem;
@@ -117,19 +68,6 @@
   </style>
 </head>
 <body>
-  <!-- Botão de menu -->
-  <button class="menu-btn" onclick="openNav()">☰</button>
-
-  <!-- Menu lateral -->
-  <div id="mySidenav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-    <a href="#contato">Contato</a>
-    <a href="#login">Login</a>
-    <a href="#links">Links úteis</a>
-    <a href="#corridas">Buscar Corridas</a>
-    <a href="#ia">Agente de IA</a>
-  </div>
-
   <header>
     <h1>Maratona BH</h1>
     <p>Seu portal de corridas, alertas e informações</p>
@@ -140,28 +78,9 @@
     <section id="contato">
       <h2>Contato</h2>
       <p>
-        📧 <a href="mailto:matheus.renatofabiano@gmail.com" target="_blank">matheus.renatofabiano@gmail.com</a><br/>
-        📱 <a href="https://wa.me/5531996579488" target="_blank">+55 (31) 99657-9488 (WhatsApp)</a>
+        📧 <a href="mailto:matheus.renatofabiano@gmail.com">matheus.renatofabiano@gmail.com</a><br/>
+        📱 <a href="https://wa.me/5531996579488" target="_blank">+55 (31) 99657-9488</a>
       </p>
-    </section>
-
-    <!-- Login -->
-    <section id="login">
-      <h2>Conectar</h2>
-      <p>Entre com sua conta para receber alertas e acessar funcionalidades extras:</p>
-      <button class="btn-google">🔴 Google</button>
-      <button class="btn-apple"> Apple</button>
-      <button class="btn-microsoft">🟦 Microsoft</button>
-    </section>
-
-    <!-- Links -->
-    <section id="links">
-      <h2>Links úteis</h2>
-      <ul>
-        <li><a href="https://worldathletics.org/competitions" target="_blank">World Athletics</a></li>
-        <li><a href="https://www.marathonworld.com/" target="_blank">Marathon World</a></li>
-        <li><a href="https://www.runnersworld.com/" target="_blank">Runner's World</a></li>
-      </ul>
     </section>
 
     <!-- Busca de Corridas -->
@@ -169,12 +88,11 @@
       <h2>Buscar Corridas</h2>
       <p>Pesquise por corridas no mundo:</p>
       <select id="region">
-        <option value="br">Brasil</option>
-        <option value="sa">América do Sul</option>
-        <option value="na">América do Norte</option>
-        <option value="eu">Europa</option>
-        <option value="as">Ásia</option>
-        <option value="world">Mundo</option>
+        <option value="US">Estados Unidos</option>
+        <option value="BR">Brasil</option>
+        <option value="CA">Canadá</option>
+        <option value="GB">Reino Unido</option>
+        <option value="DE">Alemanha</option>
       </select>
       <button onclick="buscarCorridas()">Buscar</button>
       <div id="results"></div>
@@ -197,35 +115,24 @@
   </footer>
 
   <script>
-    function openNav() {
-      document.getElementById("mySidenav").style.width = "250px";
-    }
-    function closeNav() {
-      document.getElementById("mySidenav").style.width = "0";
-    }
-
-    // Busca de corridas (mockup)
-    function buscarCorridas() {
-      const reg = document.getElementById("region").value;
-      let txt = "";
-      switch(reg) {
-        case "br": txt = "🏃 Corrida de São Silvestre (São Paulo) - Dezembro"; break;
-        case "eu": txt = "🏃 Maratona de Berlim - Setembro"; break;
-        case "na": txt = "🏃 Maratona de Boston - Abril"; break;
-        case "world": txt = "🌍 Várias maratonas ao redor do mundo em breve"; break;
-        default: txt = "Nenhuma corrida encontrada para essa região.";
-      }
-      document.getElementById("results").innerHTML = txt;
+    async function buscarCorridas() {
+      const region = document.getElementById("region").value;
+      const res = await fetch(`/races?country=${region}`);
+      const data = await res.json();
+      document.getElementById("results").innerHTML =
+        data.races.map(r => `🏃 ${r.name} - ${r.date} (${r.location})`).join("<br>");
     }
 
-    // Caixa de IA (mockup)
-    function sendQuestion() {
+    async function sendQuestion() {
       const question = document.getElementById("userQuestion").value;
-      if (!question) return alert("Digite uma pergunta!");
-      document.getElementById("aiResponse").innerText =
-        "🤖 [Protótipo] Resposta da IA para: " + question;
+      const res = await fetch("/ask", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question })
+      });
+      const data = await res.json();
+      document.getElementById("aiResponse").innerText = "🤖 " + data.answer;
     }
   </script>
 </body>
 </html>
-
