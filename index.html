@@ -6,83 +6,156 @@
   <title>Maratona BH</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      margin: 0; padding: 0;
-      background: #f5f5f5;
-      color: #333;
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: url('https://images.unsplash.com/photo-1520975933028-df2a4cbb0d1b?auto=format&fit=crop&w=1600&q=80') no-repeat center center fixed;
+      background-size: cover;
+      color: #fff;
     }
     header {
-      background: #222; color: #fff;
-      padding: 1rem; text-align: center;
-    }
-    main {
-      max-width: 900px;
-      margin: 2rem auto;
+      background: rgba(0, 0, 0, 0.7);
       padding: 1rem;
-      background: #fff;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    header h1 { margin: 0; font-size: 2rem; color: #ffcc00; }
+    header p { margin: .2rem 0; font-size: 1.1rem; }
+
+    /* Menu lateral */
+    .sidenav {
+      height: 100%;
+      width: 0;
+      position: fixed;
+      z-index: 1;
+      top: 0; left: 0;
+      background-color: rgba(0, 0, 0, 0.95);
+      overflow-x: hidden;
+      transition: 0.3s;
+      padding-top: 60px;
+    }
+    .sidenav a {
+      padding: 10px 20px;
+      text-decoration: none;
+      font-size: 18px;
+      color: #ffcc00;
+      display: block;
+      transition: 0.2s;
+    }
+    .sidenav a:hover { color: #fff; background: #ff6600; }
+    .sidenav .closebtn {
+      position: absolute;
+      top: 20px; right: 25px;
+      font-size: 36px;
+      color: #fff;
+    }
+
+    .menu-btn {
+      font-size: 24px;
+      cursor: pointer;
+      color: #ffcc00;
+      background: none;
+      border: none;
+      position: absolute;
+      top: 15px; left: 15px;
+    }
+
+    main {
+      background: rgba(0, 0, 0, 0.65);
+      margin: 2rem auto;
+      padding: 2rem;
+      border-radius: 10px;
+      max-width: 900px;
     }
     section { margin-bottom: 2rem; }
-    h2 { border-bottom: 2px solid #eee; padding-bottom: .5rem; }
-    a { color: #0066cc; text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    h2 { color: #ffcc00; border-bottom: 2px solid #ffcc00; padding-bottom: .5rem; }
+    a { color: #66ccff; }
+
     button, select, input[type="text"] {
-      padding: .5rem 1rem;
-      margin: .5rem 0;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-size: 1rem;
-      cursor: pointer;
-    }
-    .login-buttons button {
-      display: inline-flex;
-      align-items: center;
-      gap: .5rem;
-      color: #fff;
-      margin-right: .5rem;
+      padding: .6rem 1rem;
+      margin: .4rem 0;
+      border-radius: 6px;
       border: none;
+      font-size: 1rem;
     }
-    .btn-google { background: #db4437; }
-    .btn-apple { background: #000000; }
-    .btn-microsoft { background: #2b579a; }
+
+    /* Login */
+    .btn-google { background: #db4437; color: #fff; }
+    .btn-apple { background: #000; color: #fff; }
+    .btn-microsoft { background: #2b579a; color: #fff; }
+
+    /* Caixa corrida */
+    #results {
+      margin-top: 1rem;
+      padding: 1rem;
+      background: rgba(255,255,255,0.1);
+      border-radius: 6px;
+    }
+
+    /* Caixa IA */
     .chat-box {
       display: flex;
       gap: .5rem;
     }
-    .chat-box input { flex: 1; }
+    .chat-box input {
+      flex: 1;
+      padding: .6rem;
+    }
+    #aiResponse {
+      margin-top: 1rem;
+      padding: 1rem;
+      border-radius: 6px;
+      background: rgba(255, 255, 255, 0.1);
+      font-style: italic;
+    }
+
     footer {
       text-align: center;
-      margin-top: 2rem;
       padding: 1rem;
-      font-size: 0.9rem;
-      background: #222;
-      color: #fff;
+      background: rgba(0, 0, 0, 0.8);
+      font-size: .9rem;
+      margin-top: 2rem;
     }
   </style>
 </head>
 <body>
+  <!-- Botão de menu -->
+  <button class="menu-btn" onclick="openNav()">☰</button>
+
+  <!-- Menu lateral -->
+  <div id="mySidenav" class="sidenav">
+    <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#contato">Contato</a>
+    <a href="#login">Login</a>
+    <a href="#links">Links úteis</a>
+    <a href="#corridas">Buscar Corridas</a>
+    <a href="#ia">Agente de IA</a>
+  </div>
+
   <header>
     <h1>Maratona BH</h1>
     <p>Seu portal de corridas, alertas e informações</p>
   </header>
 
   <main>
-    <!-- Contatos -->
-    <section>
+    <!-- Contato -->
+    <section id="contato">
       <h2>Contato</h2>
       <p>
-        📧 <a href="mailto:matheus.renatofabiano@gmail.com" target="_blank">
-          matheus.renatofabiano@gmail.com
-        </a><br/>
-        📱 <a href="https://wa.me/5531996579488" target="_blank">
-          +55 (31) 99657-9488 (WhatsApp)
-        </a>
+        📧 <a href="mailto:matheus.renatofabiano@gmail.com" target="_blank">matheus.renatofabiano@gmail.com</a><br/>
+        📱 <a href="https://wa.me/5531996579488" target="_blank">+55 (31) 99657-9488 (WhatsApp)</a>
       </p>
     </section>
 
-    <!-- Links externos -->
-    <section>
+    <!-- Login -->
+    <section id="login">
+      <h2>Conectar</h2>
+      <p>Entre com sua conta para receber alertas e acessar funcionalidades extras:</p>
+      <button class="btn-google">🔴 Google</button>
+      <button class="btn-apple"> Apple</button>
+      <button class="btn-microsoft">🟦 Microsoft</button>
+    </section>
+
+    <!-- Links -->
+    <section id="links">
       <h2>Links úteis</h2>
       <ul>
         <li><a href="https://worldathletics.org/competitions" target="_blank">World Athletics</a></li>
@@ -91,28 +164,8 @@
       </ul>
     </section>
 
-    <!-- Login -->
-    <section>
-      <h2>Conectar</h2>
-      <p>Entre com sua conta para receber alertas e acessar funcionalidades extras:</p>
-      <div class="login-buttons">
-        <button class="btn-google" onclick="alert('Login com Google em breve')">
-          <img src="https://www.svgrepo.com/show/355037/google.svg" alt="Google" width="20" />
-          Entrar com Google
-        </button>
-        <button class="btn-apple" onclick="alert('Login com Apple em breve')">
-          <img src="https://www.svgrepo.com/show/303128/apple-logo.svg" alt="Apple" width="20" />
-          Entrar com Apple
-        </button>
-        <button class="btn-microsoft" onclick="alert('Login com Microsoft em breve')">
-          <img src="https://www.svgrepo.com/show/303144/microsoft.svg" alt="Microsoft" width="20" />
-          Entrar com Microsoft
-        </button>
-      </div>
-    </section>
-
-    <!-- Busca de corridas -->
-    <section>
+    <!-- Busca de Corridas -->
+    <section id="corridas">
       <h2>Buscar Corridas</h2>
       <p>Pesquise por corridas no mundo:</p>
       <select id="region">
@@ -123,19 +176,19 @@
         <option value="as">Ásia</option>
         <option value="world">Mundo</option>
       </select>
-      <button onclick="alert('Busca em breve')">Buscar</button>
+      <button onclick="buscarCorridas()">Buscar</button>
       <div id="results"></div>
     </section>
 
     <!-- Caixa de IA -->
-    <section>
+    <section id="ia">
       <h2>Pergunte ao Agente de IA</h2>
       <p>Faça perguntas sobre corridas e treinos:</p>
       <div class="chat-box">
         <input type="text" id="userQuestion" placeholder="Digite sua pergunta..." />
         <button onclick="sendQuestion()">Enviar</button>
       </div>
-      <div id="aiResponse" style="margin-top:1rem; font-style: italic;"></div>
+      <div id="aiResponse"></div>
     </section>
   </main>
 
@@ -144,10 +197,31 @@
   </footer>
 
   <script>
+    function openNav() {
+      document.getElementById("mySidenav").style.width = "250px";
+    }
+    function closeNav() {
+      document.getElementById("mySidenav").style.width = "0";
+    }
+
+    // Busca de corridas (mockup)
+    function buscarCorridas() {
+      const reg = document.getElementById("region").value;
+      let txt = "";
+      switch(reg) {
+        case "br": txt = "🏃 Corrida de São Silvestre (São Paulo) - Dezembro"; break;
+        case "eu": txt = "🏃 Maratona de Berlim - Setembro"; break;
+        case "na": txt = "🏃 Maratona de Boston - Abril"; break;
+        case "world": txt = "🌍 Várias maratonas ao redor do mundo em breve"; break;
+        default: txt = "Nenhuma corrida encontrada para essa região.";
+      }
+      document.getElementById("results").innerHTML = txt;
+    }
+
+    // Caixa de IA (mockup)
     function sendQuestion() {
       const question = document.getElementById("userQuestion").value;
       if (!question) return alert("Digite uma pergunta!");
-      // Aqui futuramente você chama a API da OpenAI
       document.getElementById("aiResponse").innerText =
         "🤖 [Protótipo] Resposta da IA para: " + question;
     }
@@ -155,4 +229,3 @@
 </body>
 </html>
 
-</html>
