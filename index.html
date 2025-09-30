@@ -1,47 +1,102 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Maratona BH</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
-    body { font-family: Arial, sans-serif; line-height: 1.6; margin: 0; padding: 0; }
-    header { background: #222; color: #fff; padding: 20px; text-align: center; }
-    section { padding: 20px; }
-    .contact { background: #f4f4f4; padding: 20px; border-radius: 8px; }
-    footer { background: #222; color: #fff; text-align: center; padding: 10px; font-size: 0.9em; }
-    a { color: #0066cc; }
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0; padding: 0;
+      background: #f5f5f5;
+      color: #333;
+    }
+    header {
+      background: #222; color: #fff;
+      padding: 1rem; text-align: center;
+    }
+    main {
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 1rem;
+      background: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    section { margin-bottom: 2rem; }
+    h2 { border-bottom: 2px solid #eee; padding-bottom: .5rem; }
+    button, select, input[type="text"] {
+      padding: .5rem 1rem;
+      margin: .5rem 0;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      cursor: pointer;
+    }
+    .login-buttons button {
+      margin-right: .5rem;
+    }
+    .chat-box {
+      display: flex;
+      gap: .5rem;
+    }
+    .chat-box input { flex: 1; }
   </style>
 </head>
 <body>
   <header>
-    <h1>MaratonaDeBH.com.br MaratonaBH.com.br</h1>
-    <p>Domínios disponíveis para parcerias e divulgação da Maratona de BH.</p>
+    <h1>Maratona BH</h1>
+    <p>Seu portal de corridas, alertas e informações</p>
   </header>
 
-  <section class="contact">
-    <h2>📩 Contato</h2>
-    <p>Entre em contato para parcerias ou aquisição do domínio:</p>
-    <ul>
-      <li>Email: <a href="mailto:matheus.renatofabiano@gmail.com">matheus.renatofabiano@gmail.com</a></li>
-      <li>WhatsApp: <a href="https://wa.me/5531996579488">+55 (31) 99657-9488</a></li>
-      <li>Instagram: <a href="https://instagram.com/renatofabiano.br">@renatofabiano.br</a></li>
-    </ul>
-  </section>
+  <main>
+    <!-- Login -->
+    <section>
+      <h2>Conectar</h2>
+      <p>Entre com sua conta para receber alertas e acessar funcionalidades extras:</p>
+      <div class="login-buttons">
+        <button onclick="alert('Login com Google em breve')">Entrar com Google</button>
+        <button onclick="alert('Login com Apple em breve')">Entrar com Apple</button>
+        <button onclick="alert('Login com Microsoft em breve')">Entrar com Microsoft</button>
+      </div>
+    </section>
 
-  <section>
-    <h2>🏃 Informações úteis para corredores</h2>
-    <ul>
-      <li><a href="https://www.ticketsports.com.br" target="_blank">Plataforma Ticket Sports</a></li>
-      <li><a href="https://www.sympla.com.br" target="_blank">Eventos esportivos Sympla</a></li>
-      <li><a href="https://www.cbat.org.br" target="_blank">Confederação Brasileira de Atletismo</a></li>
-      <li><a href="https://voltapampulha.com.br" target="_blank">Volta da Pampulha</a></li>
-    </ul>
-  </section>
+    <!-- Busca de corridas -->
+    <section>
+      <h2>Buscar Corridas</h2>
+      <p>Pesquise por corridas no mundo:</p>
+      <select id="region">
+        <option value="br">Brasil</option>
+        <option value="sa">América do Sul</option>
+        <option value="na">América do Norte</option>
+        <option value="eu">Europa</option>
+        <option value="as">Ásia</option>
+        <option value="world">Mundo</option>
+      </select>
+      <button onclick="alert('Busca em breve')">Buscar</button>
+      <div id="results"></div>
+    </section>
 
-  <footer>
-    <p>© 2025 - Domínio registrado e administrado por Renato Fabiano Matheus</p>
-    <p>Este site não é o canal oficial da Maratona de BH 2025.</p>
-  </footer>
+    <!-- Caixa de IA -->
+    <section>
+      <h2>Pergunte ao Agente de IA</h2>
+      <p>Faça perguntas sobre corridas e treinos:</p>
+      <div class="chat-box">
+        <input type="text" id="userQuestion" placeholder="Digite sua pergunta..." />
+        <button onclick="sendQuestion()">Enviar</button>
+      </div>
+      <div id="aiResponse" style="margin-top:1rem; font-style: italic;"></div>
+    </section>
+  </main>
+
+  <script>
+    function sendQuestion() {
+      const question = document.getElementById("userQuestion").value;
+      if (!question) return alert("Digite uma pergunta!");
+      // Aqui futuramente você chama a API da OpenAI
+      document.getElementById("aiResponse").innerText =
+        "🤖 [Protótipo] Resposta da IA para: " + question;
+    }
+  </script>
 </body>
 </html>
